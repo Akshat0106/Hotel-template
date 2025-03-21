@@ -1,7 +1,61 @@
-export function Home(){
-    return (
-        <>
-        Hi hOME
-        </>
-    )
+import { ParallaxEffect } from "../components/homePageComponent/ParallaxEffect";
+import img from "../assets/homePageImages/home-page.jpg";
+
+import { AboutUs } from "../components/homePageComponent/AboutUs";
+import { Accomodation } from "../components/homePageComponent/Accomodation";
+import { Facilities } from "../components/homePageComponent/Facilities";
+import { Gallery } from "../components/homePageComponent/Gallery";
+import { Testimonial } from "../components/homePageComponent/Testimonial";
+
+// import './../../index.css';
+
+export function Home() {
+  return (
+    <>
+      <div className="flex flex-col h-screen px-60">
+        {/* Logo Section (Fixed Height) */}
+        <div className="flex h-16 justify-center items-center md:h-36">
+          <h1>Voco Farms-logo</h1>
+        </div>
+
+        <ParallaxEffect img={img} />
+      </div>
+      {/*  About Us Section */}
+
+      <div className="mt-20">
+        <AboutUs />
+      </div>
+
+      <div className="mt-20">
+        <Accomodation />
+      </div>
+
+      <div>
+        <Facilities />
+      </div>
+
+      <div>
+        <Gallery />
+      </div>
+
+      <div className="px-60 mb-30 py-10">
+        <ParallaxEffect img={img} height="h-[100vh]">
+          <Testimonial />
+        </ParallaxEffect>
+      </div>
+    </>
+  );
+}
+
+{
+  /* Image Section (Fixed Height & Responsive) */
+}
+{
+  /* <div className="flex h-[50vh] justify-center w-full md:h-[100vh] overflow-hidden sm:h-[50vh]">
+    <img
+      src="src/assets/homePageImages/home-page.jpg"
+      alt="Home-page"
+      className="h-full w-auto object-cover sm:w-full"
+    />
+  </div> */
 }
