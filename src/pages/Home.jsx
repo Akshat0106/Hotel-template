@@ -6,6 +6,7 @@ import { Accomodation } from "../components/homePageComponent/Accomodation";
 import { Facilities } from "../components/homePageComponent/Facilities";
 import { Gallery } from "../components/homePageComponent/Gallery";
 import { Testimonial } from "../components/homePageComponent/Testimonial";
+import { ContactUs } from "../components/homePageComponent/ContactUs";
 
 // import './../../index.css';
 
@@ -38,10 +39,14 @@ export function Home() {
         <Gallery />
       </div>
 
-      <div className="px-60 mb-30 py-10">
+      <div className="mb-30 px-60 py-10">
         <ParallaxEffect img={img} height="h-[100vh]">
           <Testimonial />
         </ParallaxEffect>
+      </div>
+
+      <div>
+        <ContactUs/>
       </div>
     </>
   );

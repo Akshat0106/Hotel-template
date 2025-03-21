@@ -1,5 +1,92 @@
 import { IoRestaurantOutline } from "react-icons/io5";
 
+const facilities = [
+  {
+    id: 1,
+    title: "Restaurant 1",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 2,
+    title: "Restaurant 2",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 3,
+    title: "Restaurant 3",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 4,
+    title: "Restaurant 4",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 5,
+    title: "Restaurant 5",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 6,
+    title: "Restaurant 6",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 7,
+    title: "Restaurant 7",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 8,
+    title: "Restaurant 8",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 9,
+    title: "Restaurant 9",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 10,
+    title: "Restaurant 10",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 11,
+    title: "Restaurant 11",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 12,
+    title: "Restaurant 12",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 13,
+    title: "Restaurant 13",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+  {
+    id: 14,
+    title: "Restaurant 14",
+    description:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?",
+  },
+];
+
 export function Facilities() {
   return (
     <>
@@ -9,14 +96,22 @@ export function Facilities() {
         </div>
 
         {/* cards */}
-        <div className="grid grid-cols-3 font-comic my-20">
-            <div className="grid grid-cols-1 bg-white h-70 p-10 shadow-lg w-90 rounded-xl place-items-center">
-                <div><IoRestaurantOutline className="h-14 w-20" /></div>
-                <h1 className="my-8">Restaurant</h1>
-                <p className="text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, beatae?</p>
-            </div>
+        <div className="grid grid-rows gap-10">
+          <div className="grid grid-cols-3 font-comic gap-10">
+            {facilities.map((facility) => (
+              <div
+                key={facility.id}
+                className="grid grid-cols-1 bg-white h-70 p-10 rounded-xl shadow-lg w-80 place-items-center"
+              >
+                <div>
+                  <IoRestaurantOutline className="h-14 w-20" />
+                </div>
+                <h1 className="my-8">{facility.title}</h1>
+                <p className="text-sm">{facility.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
-
       </div>
     </>
   );
