@@ -67,7 +67,7 @@ export function Home() {
       <div className="flex flex-col min-h-screen px-4 md:px-20 lg:px-40">
         {/* Logo Section (Responsive Height) */}
         <div className="flex h-12 md:h-16 lg:h-36 justify-center items-center">
-          <h1>Voco Farms-logo</h1>
+          <h1>Property-logo</h1>
         </div>
 
         <ParallaxEffect img={img} />
@@ -91,7 +91,7 @@ export function Home() {
       </div>
 
       <div className="mb-20 px-4 md:px-20 lg:px-40 py-10">
-        <ParallaxEffect img={img} height="min-h-[60vh] md:min-h-[80vh]">
+        <ParallaxEffect img={img} height="min-h-[100vh] md:min-h-[150vh]">
           <Testimonial />
         </ParallaxEffect>
       </div>
