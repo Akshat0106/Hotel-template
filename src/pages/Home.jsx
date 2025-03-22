@@ -2,7 +2,7 @@ import { ParallaxEffect } from "../components/homePageComponent/ParallaxEffect";
 import img from "../assets/homePageImages/home-page.jpg";
 
 import { AboutUs } from "../components/homePageComponent/AboutUs";
-import { Accomodation } from "../components/homePageComponent/Accomodation";
+import { Accommodation } from "../components/homePageComponent/Accommodation";
 import { Facilities } from "../components/homePageComponent/Facilities";
 import { Gallery } from "../components/homePageComponent/Gallery";
 import { Testimonial } from "../components/homePageComponent/Testimonial";
@@ -28,7 +28,7 @@ export function Home() {
       </div>
 
       <div className="mt-20">
-        <Accomodation />
+        <Accommodation />
       </div>
 
       <div>
