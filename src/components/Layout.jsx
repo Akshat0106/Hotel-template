@@ -8,7 +8,7 @@ function Layout(){
         <>
         <div>
             <Header/>
-            <main className="bg-back min-h-screen pt-[12vh]">
+            <main className="bg-back min-h-screen">
                 <Outlet/>
             </main>
             <Footer/>
