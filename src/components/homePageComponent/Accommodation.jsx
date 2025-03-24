@@ -5,6 +5,7 @@ import { Navigation } from "swiper/modules";
 
 import img from '../../assets/homePageImages/home-page.jpg'
 import { useNavigate } from "react-router-dom";
+
 const rooms = [
   {
     name: "Club Room",
@@ -15,21 +16,22 @@ const rooms = [
     images: [img, img],
   },
   {
-    name: "Club Room with Terrace & Jacuzzi",
+    name: "Suite Room",
     images: [img, img],
   },
   {
-    name: "Club Room with Terrace & Jacuzzi",
+    name: "Deluxe Room",
     images: [img, img],
   },
 ];
 
 export function Accommodation() {
-  const navi=useNavigate()
+  const navigate = useNavigate();
 
-  const roomNavi=()=>{
-      navi('/room')
-  }
+  const roomNavi = () => {
+    navigate("/room"); // Ensure this route is defined in your router setup
+  };
+
   return (
     <div className="px-10 md:px-20 lg:px-40 mb-20">
       <h1 className="text-center text-3xl mb-10">
@@ -57,7 +59,10 @@ export function Accommodation() {
 
             <h2 className="mt-4 text-lg font-semibold">{room.name}</h2>
 
-            <button className="mt-4 border border-black px-6 py-2 rounded-lg hover:bg-nav-fixed hover:text-white transition-all" onClick={roomNavi}>
+            <button 
+              className="mt-4 border border-black px-6 py-2 rounded-lg hover:bg-nav-fixed hover:text-white transition-all"
+              onClick={roomNavi} // Navigates to /room
+            >
               View More
             </button>
           </div>

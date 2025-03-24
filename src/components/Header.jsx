@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link"; // For smooth scrolling
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,17 +9,11 @@ function Header() {
 
   useEffect(() => {
     function handleScroll() {
-      const shouldBeScrolled = window.scrollY > 10;
-      // console.log("Scrolled:",shoubldBeScrolled,"ScrollY:",window.scrollY);
-      setIsScrolled(shouldBeScrolled);
+      setIsScrolled(window.scrollY > 10);
     }
-    window.addEventListener("scroll", handleScroll);
 
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    window.addEventListener("scroll", handleScroll);
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
@@ -27,207 +22,93 @@ function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const smoothScroll = (e, sectionId) => {
-    e.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const smoothScrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
     <>
       <header
-        className={`fixed left-0 top-0 w-full z-[100] transition-all duration-300
-      ${isScrolled ? "bg-nav-fixed shadow-md" : "bg-primary"}`}
+        className={`fixed left-0 top-0 w-full z-[100] transition-all duration-300 
+        ${isScrolled ? "bg-nav-fixed shadow-md" : "bg-primary"}`}
       >
         <div className="text-white w-full font-poppins">
           <div className="container flex h-16 justify-between items-center mx-auto px-4 py-4">
-            {/* Logo */}
-            <div className="flex flex-1 justify-center items-center md:justify-start">
-              Logo
-            </div>
-
-            {/* Hamburger Menu Button */}
+            
+            {/* Hamburger Menu (Left Side on Mobile) */}
             <button
-              className="text-white absolute focus:outline-none md:hidden right-4"
+              className="text-white md:hidden focus:outline-none"
               onClick={toggleMenu}
               aria-label="Toggle-menu"
             >
-              {isMenuOpen ? (
-                <FaTimes className="h-6 w-6" />
-              ) : (
-                <FaBars className="h-6 w-6" />
-              )}
+              {isMenuOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
             </button>
 
-            {/* Desktop View */}
-            <div className="flex-1 justify-center text-lg cursor-pointer gap-5 hidden lg:gap-10 lg:text-xl md:flex pr-40">
-              <a
-                href="#"
-                className="cursor-pointer"
-                onClick={(e) => smoothScrollToTop(e)}
-              >
+            {/* Desktop Navbar */}
+            <nav className="flex-1 justify-center text-lg cursor-pointer gap-5 hidden lg:gap-10 lg:text-xl md:flex">
+              <HashLink smooth to="/#top" onClick={closeMenu} className="cursor-pointer">
                 Home
-              </a>
-              <a
-                href="#aboutus"
-                className="cursor-pointer"
-                onClick={(e) => smoothScroll(e, "aboutus")}
-              >
+              </HashLink>
+              <HashLink smooth to="/#aboutus" onClick={closeMenu} className="cursor-pointer">
                 About Us
-              </a>
-              <a
-                href="#accommodation"
-                className="cursor-pointer"
-                onClick={(e) => smoothScroll(e, "accommodation")}
-              >
+              </HashLink>
+              <HashLink smooth to="/#accommodation" onClick={closeMenu} className="cursor-pointer">
                 Accommodation
-              </a>
-
-              {/* extra route for Events page */}
-              <Link to="/events">Events</Link>
-
-              <a
-                href="#facilities"
-                className="cursor-pointer"
-                onClick={(e) => smoothScroll(e, "facilities")}
-              >
+              </HashLink>
+              <Link to="/events" onClick={() => { window.scrollTo(0, 0); closeMenu(); }}>
+                Events
+              </Link>
+              <HashLink smooth to="/#facilities" onClick={closeMenu} className="cursor-pointer">
                 Facilities
-              </a>
-              <a
-                href="#gallery"
-                className="cursor-pointer"
-                onClick={(e) => smoothScroll(e, "gallery")}
-              >
+              </HashLink>
+              <HashLink smooth to="/#gallery" onClick={closeMenu} className="cursor-pointer">
                 Gallery
-              </a>
-              <a
-                href="#contact"
-                className="cursor-pointer"
-                onClick={(e) => smoothScroll(e, "contact")}
-              >
+              </HashLink>
+              <HashLink smooth to="/#contact" onClick={closeMenu} className="cursor-pointer">
                 Contact Us
-              </a>
+              </HashLink>
+            </nav>
 
-              {/* For Multipager  */}
-              {/* <Link to="/">Home</Link>
-              <Link to="/aboutus">About Us</Link>
-              <Link to="/facilities">Facilities</Link>
-              <Link to="/gallery">Gallery</Link>
-              <Link to="/contactUs">Contact Us</Link> */}
+            {/* "Book Now" Button (Right Side on Mobile) */}
+            <div className="md:hidden">
+              <Link to="/book" className="px-4 py-2 bg-white text-black rounded-lg text-sm">
+                Book Now
+              </Link>
             </div>
           </div>
-
-          {/* Empty div for balance in the flex layout */}
-          <div className="flex-1 hidden md:block"></div>
         </div>
       </header>
 
       {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
         <div className="md:hidden fixed inset-0 bg-primary pt-16 z-[99]">
-          <div className="flex flex-col items-center py-4 space-y-4 text-xl">
-            <Link
-              to="/"
-              onClick={(e) => {
-                smoothScrollToTop(e);
-                toggleMenu();
-              }}
-              className="text-white hover:text-gray-300 transition"
-            >
+          <div className="flex flex-col items-center pt-10 space-y-10 text-xl">
+            <HashLink smooth to="/#top" onClick={closeMenu} className="text-white">
               Home
-            </Link>
-
-            <a
-              href="#aboutus"
-              className="cursor-pointer"
-              onClick={(e) => {
-                smoothScrollToTop(e,"aboutus");
-                toggleMenu();
-              }}
-            >
+            </HashLink>
+            <HashLink smooth to="/#aboutus" onClick={closeMenu} className="text-white">
               About Us
-            </a>
-            <a
-              href="#accommodation"
-              className="cursor-pointer"
-              onClick={(e) => smoothScroll(e, "accommodation")}
-            >
+            </HashLink>
+            <HashLink smooth to="/#accommodation" onClick={closeMenu} className="text-white">
               Accommodation
-            </a>
-
-            {/* extra route for Events page */}
-            <Link to="/events">Events</Link>
-
-            <a
-              href="#facilities"
-              className="cursor-pointer"
-              onClick={(e) => smoothScroll(e, "facilities")}
-            >
+            </HashLink>
+            <Link to="/events" onClick={() => { window.scrollTo(0, 0); closeMenu(); }} className="text-white">
+              Events
+            </Link>
+            <HashLink smooth to="/#facilities" onClick={closeMenu} className="text-white">
               Facilities
-            </a>
-            <a
-              href="#gallery"
-              className="cursor-pointer"
-              onClick={(e) => smoothScroll(e, "gallery")}
-            >
+            </HashLink>
+            <HashLink smooth to="/#gallery" onClick={closeMenu} className="text-white">
               Gallery
-            </a>
-            <a
-              href="#contact"
-              className="cursor-pointer"
-              onClick={(e) => smoothScroll(e, "contact")}
-            >
+            </HashLink>
+            <HashLink smooth to="/#contact" onClick={closeMenu} className="text-white">
               Contact Us
-            </a>
-
-            {/* For multipager */}
-            {/* <Link
-              to="/"
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300 transition"
-            >
-              Home
-            </Link>
-            <Link
-              to="/aboutus"
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300 transition"
-            >
-              About Us
-            </Link>
-            <Link
-              to="/facilities"
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300 transition"
-            >
-              Facilities
-            </Link>
-            <Link
-              to="/gallery"
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300 transition"
-            >
-              Gallery
-            </Link>
-            <Link
-              to="/contactUs"
-              onClick={toggleMenu}
-              className="text-white hover:text-gray-300 transition"
-            >
-              Contact Us
-            </Link> */}
+            </HashLink> 
           </div>
         </div>
       )}
-      <div className="h-5"></div>
     </>
   );
 }
+
 export default Header;

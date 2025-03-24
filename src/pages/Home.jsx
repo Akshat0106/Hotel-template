@@ -49,14 +49,22 @@ export function Home() {
       </div>
 
       {/* Floating WhatsApp Button */}
-      <a
-        href="https://wa.me/" // Replace with your WhatsApp number
-        target="_blank"
-        rel="noopener noreferrer"
-        className="z-99 fixed bottom-4 left-4 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all"
-      >
-        <FaWhatsapp className="text-3xl" />
-      </a>
+      <div className="fixed bottom-20 left-0 right-0 flex justify-between px-6 md:px-12 z-50">
+        {/* WhatsApp Button */}
+        <a
+          href="https://wa.me/yourwhatsapplink"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 bg-green-500 text-white px-4 py-4 rounded-full shadow-lg hover:bg-green-600 transition-all"
+        >
+          <FaWhatsapp size={24} className="text-white" />
+        </a>
+
+        {/* Floating Book Now Button */}
+        <button className="fixed top-1/2 right-4 md:right-10 -translate-y-1/2 bg-blue-600 text-white px-5 py-3 md:px-6 md:py-4 rounded-full shadow-lg hover:bg-blue-700 transition-all font-medium z-50">
+          Book Now
+        </button>
+      </div>
     </>
   );
 }
